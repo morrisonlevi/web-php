@@ -51,66 +51,64 @@ if (!isset($config["languages"])) {
 
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $lang?>">
 <head>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
-  <title>PHP: <?php echo $title ?></title>
+  <title>PHP: <?= $title ?></title>
 
- <link rel="shortcut icon" href="<?php echo $MYSITE ?>favicon.ico">
+ <link rel="shortcut icon" href="<?= $MYSITE ?>favicon.ico">
  <link rel="search" type="application/opensearchdescription+xml" href="http://php.net/phpnetimprovedsearch.src" title="Add PHP.net search">
- <link rel="alternate" type="application/atom+xml" href="<?php echo $MYSITE ?>releases/feed.php" title="PHP Release feed">
- <link rel="alternate" type="application/atom+xml" href="<?php echo $MYSITE ?>feed.atom" title="PHP: Hypertext Preprocessor">
+ <link rel="alternate" type="application/atom+xml" href="<?= $MYSITE ?>releases/feed.php" title="PHP Release feed">
+ <link rel="alternate" type="application/atom+xml" href="<?= $MYSITE ?>feed.atom" title="PHP: Hypertext Preprocessor">
 
 <?php if (isset($_SERVER['BASE_PAGE'])): ?>
- <link rel="canonical" href="http://php.net/<?php echo $_SERVER['BASE_PAGE']?>">
+ <link rel="canonical" href="http://php.net/<?= $_SERVER['BASE_PAGE']?>">
 <?php if ($shortname): ?>
- <link rel="shortlink" href="<?php echo $shorturl ?>">
- <link rel="alternate" href="<?php echo $shorturl ?>" hreflang="x-default">
+ <link rel="shortlink" href="<?= $shorturl ?>">
+ <link rel="alternate" href="<?= $shorturl ?>" hreflang="x-default">
 <?php endif ?>
 <?php endif ?>
 
 <?php foreach($config["meta-navigation"] as $rel => $page): ?>
- <link rel="<?php echo $rel ?>" href="<?php echo $MYSITE ?><?php echo $page ?>">
+ <link rel="<?= $rel ?>" href="<?= $MYSITE ?><?= $page ?>">
 <?php endforeach ?>
 
 <?php foreach($config["languages"] as $code): ?>
- <link rel="alternate" href="<?php echo $MYSITE ?>manual/<?php echo $code?>/<?php echo $config["thispage"] ?>" hreflang="<?php echo $code?>">
+ <link rel="alternate" href="<?= $MYSITE ?>manual/<?= $code?>/<?= $config["thispage"] ?>" hreflang="<?= $code?>">
 <?php endforeach ?>
 
 <?php foreach($CSS as $filename => $modified): ?>
-<link rel="stylesheet" type="text/css" href="<?php echo $MYSITE ?>cached.php?t=<?php echo $modified?>&amp;f=<?php echo $filename?>" media="screen">
+<link rel="stylesheet" type="text/css" href="<?= $MYSITE ?>cached.php?t=<?= $modified?>&amp;f=<?= $filename?>" media="screen">
 <?php endforeach ?>
 
 <?php if (!empty($_SERVER["BASE_HREF"])): ?>
- <base href="<?php echo $_SERVER["BASE_HREF"] ?>">
+ <base href="<?= $_SERVER["BASE_HREF"] ?>">
 <?php endif ?>
 
 </head>
-<body class="<?php print $curr; ?> <?php echo $classes; ?>">
+<body class="<?= $curr; ?> <?= $classes; ?>">
 
 <nav id="head-nav" class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
     <a href="/" class="brand"><img src="/images/logo.php" width="48" height="24" alt="php"></a>
     <div id="mainmenu-toggle-overlay"></div>
     <input type="checkbox" id="mainmenu-toggle">
     <ul class="nav">
-      <li class="<?php echo $curr == "downloads" ? "active" : ""?>"><a href="/downloads">Downloads</a></li>
-      <li class="<?php echo $curr == "docs" ? "active" : ""?>"><a href="/docs.php">Documentation</a></li>
-      <li class="<?php echo $curr == "community" ? "active" : ""?>"><a href="/get-involved" >Get Involved</a></li>
-      <li class="<?php echo $curr == "help" ? "active" : ""?>"><a href="/support">Help</a></li>
+      <li class="<?= $curr == "downloads" ? "active" : ""?>"><a href="/downloads">Downloads</a></li>
+      <li class="<?= $curr == "docs" ? "active" : ""?>"><a href="/docs.php">Documentation</a></li>
+      <li class="<?= $curr == "community" ? "active" : ""?>"><a href="/get-involved" >Get Involved</a></li>
+      <li class="<?= $curr == "help" ? "active" : ""?>"><a href="/support">Help</a></li>
     </ul>
     <form class="navbar-search" id="topsearch" action="/search.php">
       <input type="hidden" name="show" value="quickref">
       <input type="search" name="pattern" class="search-query" placeholder="Search" accesskey="s">
     </form>
-  </div>
-  <div id="flash-message"></div>
 </nav>
+<div id="flash-message"></div>
 <?php if (!empty($config["headsup"])): ?>
-<div class="headsup"><?php echo $config["headsup"]?></div>
+<div class="headsup"><?= $config["headsup"]?></div>
 <?php endif ?>
 <nav id="trick"><div><?php doc_toc("en") ?></div></nav>
 <div id="goto">
@@ -125,15 +123,15 @@ if (!isset($config["languages"])) {
     <div id="breadcrumbs-inner">
     <?php if (isset($config['next'])): ?>
       <div class="next">
-        <a href="<?php echo $config['next'][0]; ?>">
-          <?php echo $config['next'][1]; ?> &raquo;
+        <a href="<?= $config['next'][0]; ?>">
+          <?= $config['next'][1]; ?> &raquo;
         </a>
       </div>
     <?php endif; ?>
     <?php if (isset($config['prev'])): ?>
       <div class="prev">
-        <a href="<?php echo $config['prev'][0]; ?>">
-          &laquo; <?php echo $config['prev'][1]; ?>
+        <a href="<?= $config['prev'][0]; ?>">
+          &laquo; <?= $config['prev'][1]; ?>
         </a>
       </div>
     <?php endif; ?>
@@ -156,7 +154,7 @@ if (!isset($config["languages"])) {
 <?php if (!empty($config['intro'])):?>
 <div id="intro">
   <div class="container">
-    <?php echo $config['intro'];?>
+    <?= $config['intro'];?>
   </div>
 </div>
 <?php endif;?>
