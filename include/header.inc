@@ -2,10 +2,11 @@
 /* $Id$ */
 
 $css_files = array(
+/*
     '/fonts/Fira/fira.css',
     '/fonts/Font-Awesome/css/fontello.css',
-    '/styles/theme-base.css',
-    '/styles/theme-medium.css',
+*/
+    '/styles/theme.css',
 );
 
 if (isset($config['css'])) {
@@ -66,7 +67,7 @@ if (!isset($config["languages"])) {
 <?php if (isset($_SERVER['BASE_PAGE'])): ?>
  <link rel="canonical" href="http://php.net/<?php echo $_SERVER['BASE_PAGE']?>">
 <?php if ($shortname): ?>
- <link rel="shorturl" href="<?php echo $shorturl ?>">
+ <link rel="shortlink" href="<?php echo $shorturl ?>">
  <link rel="alternate" href="<?php echo $shorturl ?>" hreflang="x-default">
 <?php endif ?>
 <?php endif ?>
@@ -83,24 +84,6 @@ if (!isset($config["languages"])) {
 <link rel="stylesheet" type="text/css" href="<?php echo $MYSITE ?>cached.php?t=<?php echo $modified?>&amp;f=<?php echo $filename?>" media="screen">
 <?php endforeach ?>
 
- <!--[if lte IE 7]>
- <link rel="stylesheet" type="text/css" href="<?php echo $MYSITE ?>styles/workarounds.ie7.css" media="screen">
- <![endif]-->
-
- <!--[if lte IE 8]>
- <script type="text/javascript">
-  window.brokenIE = true;
- </script>
- <![endif]-->
-
- <!--[if lte IE 9]>
- <link rel="stylesheet" type="text/css" href="<?php echo $MYSITE ?>styles/workarounds.ie9.css" media="screen">
- <![endif]-->
-
- <!--[if IE]>
- <script type="text/javascript" src="<?php echo $MYSITE ?>js/ext/html5.js"></script>
- <![endif]-->
-
 <?php if (!empty($_SERVER["BASE_HREF"])): ?>
  <base href="<?php echo $_SERVER["BASE_HREF"] ?>">
 <?php endif ?>
@@ -109,7 +92,7 @@ if (!isset($config["languages"])) {
 <body class="<?php print $curr; ?> <?php echo $classes; ?>">
 
 <nav id="head-nav" class="navbar navbar-fixed-top">
-  <div class="navbar-inner clearfix">
+  <div class="navbar-inner">
     <a href="/" class="brand"><img src="/images/logo.php" width="48" height="24" alt="php"></a>
     <div id="mainmenu-toggle-overlay"></div>
     <input type="checkbox" id="mainmenu-toggle">
@@ -138,7 +121,7 @@ if (!isset($config["languages"])) {
 </div>
 
 <?php if (!empty($config['breadcrumbs'])): ?>
-  <div id="breadcrumbs" class="clearfix">
+  <div id="breadcrumbs">
     <div id="breadcrumbs-inner">
     <?php if (isset($config['next'])): ?>
       <div class="next">
@@ -171,7 +154,7 @@ if (!isset($config["languages"])) {
 
 
 <?php if (!empty($config['intro'])):?>
-<div id="intro" class="clearfix">
+<div id="intro">
   <div class="container">
     <?php echo $config['intro'];?>
   </div>
@@ -179,5 +162,5 @@ if (!isset($config["languages"])) {
 <?php endif;?>
 
 
-<div id="layout" class="clearfix">
-  <section id="layout-content">
+<div id="body">
+  <main>
