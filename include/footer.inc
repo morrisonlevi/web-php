@@ -1,4 +1,3 @@
-    </main><!-- layout-content -->
     <?php
     if (!empty($config['spanning-content'])) {
         print "<div class='spanning-content'>";
@@ -82,17 +81,18 @@
     }
     ?>
 
- <!-- External and third party libraries. -->
- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<a id="toTop" href="javascript:;"><span id="toTopHover"></span><img width="40" height="40" alt="To Top" src="/images/to-top@2x.png"></a>
+
+    </main><!-- layout-content -->
+</div>
+
 <?php
- $jsfiles = array("ext/hogan-2.0.0.min.js", "ext/typeahead.min.js", "ext/mousetrap.min.js", "search.js", "common.js");
+ $jsfiles = array("material.min.js");
  foreach ($jsfiles as $filename) {
    $path = dirname(dirname(__FILE__)).'/js/'.$filename;
    echo '<script type="text/javascript" src="' . $MYSITE . 'cached.php?t=' . @filemtime($path) . '&amp;f=/js/' . $filename . '"></script>'."\n";
  }
 ?>
-
-<a id="toTop" href="javascript:;"><span id="toTopHover"></span><img width="40" height="40" alt="To Top" src="/images/to-top@2x.png"></a>
 
 </body>
 </html>

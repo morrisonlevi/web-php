@@ -44,7 +44,7 @@ include_once 'include/version.inc';
 mirror_setcookie("LAST_NEWS", $_SERVER["REQUEST_TIME"], 60*60*24*365);
 
 
-$content = "<div class='home-content'>";
+$content = '<div class="newsentry mdl-grid">';
 $releasenews = 0;
 $frontpage = array();
 foreach($NEWS_ENTRIES as $entry) {
@@ -70,14 +70,14 @@ foreach($frontpage as $entry) {
     $date_human = date_format($date, 'd M Y');
     $date_w3c = date_format($date, DATE_W3C);
     $content .= <<<NEWSENTRY
-<article class="newsentry">
-  <header class="title">
+<article class="mdl-card mdl-shadow--2dp">
+  <header class="mdl-card__title">
     <time datetime="$date_w3c">$date_human</time>
-    <h2 class="newstitle">
+    <h2>
       <a href="{$MYSITE}{$link}" id="{$id}">{$entry["title"]}</a>
     </h2>
   </header>
-  <div class="newscontent">
+  <div class="mdl-card__supporting-text">
     {$entry["content"]}
   </div>
 </article>
@@ -87,27 +87,36 @@ $content .= '<p class="archive"><a href="/archive/">Older News Entries</a></p>';
 $content .= "</div>";
 
 $intro = <<<EOF
-  <div class="row clearfix">
-    <div class="blurb">
-      <p>PHP is a popular general-purpose scripting language that is especially suited to web development.</p>
-      <p>Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.</p>
+    <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+            <h3>What is PHP?</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <p>PHP is a popular general-purpose scripting language that is especially suited to web development.</p>
+            <p>Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.</p>
+        </div>
     </div>
-    <div class="download">
-      <h3>Download</h3>
 EOF;
 
-$intro .= "<ul>\n";
 foreach (get_active_branches() as $major => $releases) {
     foreach ((array)$releases as $release) {
         $version = $release['version'];
         list($major, $minor, $_) = explode('.', $version);
-        $intro .= "
-            <li><a class='download-link' href='/downloads.php#v$version'>$version</a><span class='dot'>&middot;</span><a class='notes' href='/ChangeLog-$major.php#$version'>Release Notes</a><span class='dot'>&middot;</span><a class='notes' href='/migration$major$minor'>Upgrading</a></li>\n";
+        $intro .= <<<HTML
+    <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--expand">
+            <h3>PHP {$major} Release</h2>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href='/downloads.php#v{$version}'>Download</a>
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href='/ChangeLog-$major.php#{$version}'>Release Notes</a>
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href='/migration{$major}{$minor}'>Upgrading</a>
+        </div>
+    </div>
+HTML;
     }
 }
-$intro .= "</ul>\n";
 $intro .= <<<EOF
-    </div>
   </div>
 EOF;
 

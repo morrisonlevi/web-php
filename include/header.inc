@@ -2,10 +2,8 @@
 /* $Id$ */
 
 $css_files = array(
-/*
-    '/fonts/Fira/fira.css',
-    '/fonts/Font-Awesome/css/fontello.css',
-*/
+    '/styles/material.indigo-red.min.css',
+    '/styles/material.indigo-red.min.css',
     '/styles/theme.css',
 );
 
@@ -80,6 +78,7 @@ if (!isset($config["languages"])) {
  <link rel="alternate" href="<?= $MYSITE ?>manual/<?= $code?>/<?= $config["thispage"] ?>" hreflang="<?= $code?>">
 <?php endforeach ?>
 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <?php foreach($CSS as $filename => $modified): ?>
 <link rel="stylesheet" type="text/css" href="<?= $MYSITE ?>cached.php?t=<?= $modified?>&amp;f=<?= $filename?>" media="screen">
 <?php endforeach ?>
@@ -91,20 +90,43 @@ if (!isset($config["languages"])) {
 </head>
 <body class="<?= $curr; ?> <?= $classes; ?>">
 
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	<header class="mdl-layout__header">
+		<div class="mdl-layout__header-row">
+			<a class="mdl-layout-title" href="/"><img src="/images/logos/php-logo.svg" width="48" height="24" alt="php"></a>
+			<!-- Navigation. We hide it in small screens. -->
+			<nav class="mdl-navigation mdl-layout--large-screen-only">
+				<a class="mdl-navigation__link <?= $curr == "downloads" ? "active" : ""?>" href="/downloads">Downloads</a>
+				<a class="mdl-navigation__link <?= $curr == "docs" ? "active" : ""?>" href="/docs.php">Documentation</a>
+				<a class="mdl-navigation__link <?= $curr == "community" ? "active" : ""?>" href="/get-involved">Get Involved</a>
+				<a class="mdl-navigation__link <?= $curr == "help" ? "active" : ""?>" href="/support">Help</a>
+			</nav>
+			<div class="mdl-layout-spacer"></div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+				<label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+					<i class="material-icons">search</i>
+				</label>
+				<form class="mdl-textfield__expandable-holder" action="/search.php">
+					<input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
+				</form>
+			</div>
+		</div>
+	</header>
+	<div class="mdl-layout__drawer mdl-layout--small-screen-only">
+		<span class="mdl-layout-title">Title</span>
+		<nav class="mdl-navigation">
+			<a class="mdl-navigation__link <?= $curr == "downloads" ? "active" : ""?>" href="/downloads">Downloads</a>
+			<a class="mdl-navigation__link <?= $curr == "docs" ? "active" : ""?>" href="/docs.php">Documentation</a>
+			<a class="mdl-navigation__link <?= $curr == "community" ? "active" : ""?>" href="/get-involved">Get Involved</a>
+			<a class="mdl-navigation__link <?= $curr == "help" ? "active" : ""?>" href="/support">Help</a>
+		</nav>
+	</div>
+
+	<main class="mdl-layout__content">
+		<div class="page-content">
+
 <nav id="head-nav" class="navbar navbar-fixed-top">
-    <a href="/" class="brand"><img src="/images/logo.php" width="48" height="24" alt="php"></a>
-    <div id="mainmenu-toggle-overlay"></div>
-    <input type="checkbox" id="mainmenu-toggle">
-    <ul class="nav">
-      <li class="<?= $curr == "downloads" ? "active" : ""?>"><a href="/downloads">Downloads</a></li>
-      <li class="<?= $curr == "docs" ? "active" : ""?>"><a href="/docs.php">Documentation</a></li>
-      <li class="<?= $curr == "community" ? "active" : ""?>"><a href="/get-involved" >Get Involved</a></li>
-      <li class="<?= $curr == "help" ? "active" : ""?>"><a href="/support">Help</a></li>
-    </ul>
-    <form class="navbar-search" id="topsearch" action="/search.php">
-      <input type="hidden" name="show" value="quickref">
-      <input type="search" name="pattern" class="search-query" placeholder="Search" accesskey="s">
-    </form>
+    <a href="/" class="brand"></a>
 </nav>
 <div id="flash-message"></div>
 <?php if (!empty($config["headsup"])): ?>
@@ -152,13 +174,9 @@ if (!isset($config["languages"])) {
 
 
 <?php if (!empty($config['intro'])):?>
-<div id="intro">
-  <div class="container">
-    <?= $config['intro'];?>
-  </div>
+<div id="intro" class="mdl-grid">
+	<?= $config['intro'];?>
 </div>
 <?php endif;?>
 
 
-<div id="body">
-  <main>
