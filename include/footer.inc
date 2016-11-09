@@ -56,7 +56,7 @@
 </aside>
 <?php endif; ?>
 
-  </div><!-- layout -->
+  <!--</div> layout -->
          
   <footer>
     <div class="container footer-content">

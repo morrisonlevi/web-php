@@ -89,7 +89,7 @@ $content .= "</div>";
 $intro = <<<EOF
     <div class="mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title">
-            <h3>What is PHP?</h2>
+            <h3>What is PHP?</h3>
         </div>
         <div class="mdl-card__supporting-text">
             <p>PHP is a popular general-purpose scripting language that is especially suited to web development.</p>
@@ -105,7 +105,7 @@ foreach (get_active_branches() as $major => $releases) {
         $intro .= <<<HTML
     <div class="mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title mdl-card--expand">
-            <h3>PHP {$major} Release</h2>
+            <h3>PHP {$major} Release</h3>
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href='/downloads.php#v{$version}'>Download</a>
