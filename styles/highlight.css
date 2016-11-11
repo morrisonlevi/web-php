@@ -1,0 +1,28 @@
+.php-variable {
+    color: blue;
+}
+
+.php-string,
+.php-doc-comment {
+    color: green;
+    font-style: italic;
+}
+
+.php-comment {
+    color: grey;
+    font-style: italic;
+}
+
+.php-open-close {
+    color: grey;
+    font-weight: bold;
+}
+
+.php-keyword,
+.php-control {
+    color: purple;
+}
+
+.php-number {
+    color: red;
+}

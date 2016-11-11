@@ -1,0 +1,8 @@
+{
+    "name": "php/web-php",
+    "description": "The www.php.net site.",
+    "type": "project",
+    "require": {
+        "kelunik/highlight": "^0.1.0"
+    }
+}
