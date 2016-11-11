@@ -3,8 +3,8 @@
 
 $css_files = array(
     '/styles/material.indigo-red.min.css',
-    '/styles/material.indigo-red.min.css',
     '/styles/theme.css',
+    '/styles/highlight.css',
 );
 
 if (isset($config['css'])) {
@@ -53,7 +53,7 @@ if (!isset($config["languages"])) {
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>PHP: <?= $title ?></title>
 

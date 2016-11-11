@@ -1,6 +1,12 @@
 <?php
 /* $Id$ */
 
+use Kelunik\Highlight\Highlighter;
+use Kelunik\Highlight\HtmlFormatter;
+use Kelunik\Highlight\PhpLexer;
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
 $_SERVER['STATIC_ROOT'] = $MYSITE;
 $_SERVER['MYSITE'] = $MYSITE;
 
@@ -14,35 +20,13 @@ ini_set('highlight.html',    'html');
 // Highlight PHP code
 function highlight_php($code, $return = FALSE)
 {
-    $highlighted = highlight_string($code, TRUE);
+    static $highlighter = null;
 
-    // Use this ugly hack for now to avoid code snippets with bad syntax screwing up the highlighter
-    if(strstr($highlighted, "include/layout.inc</b>")) {
-	    $highlighted = '<span class="html">'. nl2br(htmlentities($code, ENT_HTML5), FALSE) ."</span>";
-	}
+    if ($highlighter === null) {
+        $highlighter = new Highlighter(new HtmlFormatter("php"), new PhpLexer);
+    }
 
-    // Fix output to use CSS classes and wrap well
-    $highlighted = '<div class="phpcode">' . str_replace(
-        array(
-            '&nbsp;',
-            '<br>',
-            '<span style="color: ',
-            '</font>',
-            "\n ",
-            '  ',
-            '  '
-        ),
-        array(
-            ' ',
-            "<br>\n",
-            '<span class="',
-            '</span>',
-            "\n&nbsp;",
-            '&nbsp; ',
-            '&nbsp; '
-        ),
-        $highlighted
-    ) . '</div>';
+    $highlighted = $highlighter->highlight($code);
 
     if ($return) { return $highlighted; }
     else { echo $highlighted; }
@@ -229,7 +213,7 @@ function download_link($file, $title, $showsize = TRUE, $mirror = '')
             }
             echo ']';
         }
-        
+
     }
 }
 
